@@ -1,217 +1,302 @@
-🌱 Renewable Energy Management System
-A Microservices-based Renewable Energy Management System developed using Java 21, Spring Boot, Spring Data JPA, H2 Database, REST APIs, RestTemplate, and Spring Cloud API Gateway.
+# Renewable Energy Management System
 
-This application manages renewable energy sources such as Solar Panels, Wind Turbines, and Battery Storage, and intelligently distributes power based on energy demand.
+A Spring Boot Microservices project that manages renewable energy generation from **Solar Panels**, **Wind Turbines**, and **Battery Storage**, and combines them through a **Distribution Service**.
 
-📌 Project Overview
-The Renewable Energy Management System simulates a real-world renewable energy platform where energy generated from multiple renewable sources is monitored, stored, and distributed efficiently.
+---
 
-The project follows a Microservices Architecture, where each service performs a specific responsibility and communicates with other services through REST APIs.
+## Project Overview
 
-✨ Key Features
-🌞 Manage Solar Panel information
-🌬️ Monitor Wind Turbine energy generation
-🔋 Track Battery storage information
-⚡ Calculate and distribute power based on demand
-🔄 Service-to-Service Communication using RestTemplate
-🌐 Centralized API Routing using API Gateway
-🏗️ System Architecture
-                    Client
-                      │
-                      ▼
-               API Gateway (8080)
-                      │
-      ┌───────────────┼────────────────┐
-      │               │                │
-      ▼               ▼                ▼
- Solar Service    Wind Service    Battery Service
-   (8081)            (8082)           (8083)
-      │               │                │
-      └───────────────┼────────────────┘
-                      ▼
-          Distribution Service (8084)
-🚀 Technologies Used
-Technology	Version
-Java	21
-Spring Boot	3.x
-Spring Web	Latest
-Spring Data JPA	Latest
-Spring Cloud Gateway	Latest
-RestTemplate	Latest
-H2 Database	Latest
-Maven	3.x
-IntelliJ IDEA	Latest
-Postman	Latest
-📂 Project Structure
-Renewable-Energy-Management-System
+This project demonstrates a Microservices Architecture where different services work independently and communicate using REST APIs.
+
+The system collects energy generation data from:
+
+- Solar Energy
+- Wind Energy
+- Battery Storage
+
+The Distribution Service gathers information from all services and calculates the final energy distribution.
+
+---
+
+## Technologies Used
+
+- Java 17
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- H2 Database
+- RestTemplate
+- Maven
+- IntelliJ IDEA
+- Postman
+- Git & GitHub
+
+---
+
+## Project Structure
+
+```
+Renewable-Energy-System
 │
-├── api-gateway
-├── solar-service
-├── wind-service
-├── battery-service
-├── distribution-service
-├── README.md
-🔧 Microservices
-🌞 Solar Service
-Port: 8081
+├── Solar Service
+├── Wind Service
+├── Battery Service
+├── Distribution Service
+└── API Gateway
+```
 
-Responsibilities
-Register Solar Panels
-View Solar Panels
-Update Solar Panel Details
-Delete Solar Panels
-Get Solar Panel by ID
-🌬️ Wind Service
-Port: 8082
+---
 
-Responsibilities
-Register Wind Turbines
-View Wind Turbines
-Update Wind Turbine Details
-Delete Wind Turbines
-Get Wind Turbine by ID
-🔋 Battery Service
-Port: 8083
+## Microservices
 
-Responsibilities
-Register Battery
-View Battery Details
-Update Battery Information
-Delete Battery
-Get Battery by ID
-⚡ Distribution Service
-Port: 8084
+### 1. Solar Service
 
-Responsibilities
-Collect Solar Service data
-Collect Wind Service data
-Collect Battery Service data
-Calculate Power Distribution
-Store Distribution History
-View Distribution Details
-The Distribution Service communicates with the Solar, Wind, and Battery services using RestTemplate.
+Port: **8081**
 
-🌐 API Gateway
-Port: 8080
+Functions
 
-Acts as the single entry point for all client requests and routes them to the appropriate microservice.
+- Add Solar Panel
+- View All Solar Panels
+- View Solar Panel by ID
+- Delete Solar Panel
 
-🗄️ H2 Database Console
-Each microservice uses its own H2 In-Memory Database.
+---
 
-Service	Port	H2 Console
-Solar Service	8081	http://localhost:8081/h2-console
-Wind Service	8082	http://localhost:8082/h2-console
-Battery Service	8083	http://localhost:8083/h2-console
-Distribution Service	8084	http://localhost:8084/h2-console
-Login Details
-Driver Class
+### 2. Wind Service
 
-org.h2.Driver
-JDBC URL
-Service	JDBC URL
-Solar	jdbc:h2:mem:solar_db
-Wind	jdbc:h2:mem:wind_db
-Battery	jdbc:h2:mem:battery_db
-Distribution	jdbc:h2:mem:distribution_db
-Username
+Port: **8082**
 
-sa
-Password
+Functions
 
-Leave blank
-📡 REST APIs
-🌞 Solar Service
-Method	Endpoint
-POST	/solar-panels
-GET	/solar-panels
-GET	/solar-panels/{id}
-PUT	/solar-panels/{id}
-DELETE	/solar-panels/{id}
-🌬️ Wind Service
-Method	Endpoint
-POST	/wind-turbines
-GET	/wind-turbines
-GET	/wind-turbines/{id}
-PUT	/wind-turbines/{id}
-DELETE	/wind-turbines/{id}
-🔋 Battery Service
-Method	Endpoint
-POST	/battery
-GET	/battery
-GET	/battery/{id}
-PUT	/battery/{id}
-DELETE	/battery/{id}
-⚡ Distribution Service
-Method	Endpoint
-POST	/distribution/balance?requiredPower=700
-GET	/distribution
-GET	/distribution/{id}
-🔄 Service Communication
-The Distribution Service communicates with:
+- Add Wind Turbine
+- View All Wind Turbines
+- View Wind Turbine by ID
+- Delete Wind Turbine
 
+---
+
+### 3. Battery Service
+
+Port: **8083**
+
+Functions
+
+- Add Battery
+- View All Batteries
+- View Battery by ID
+- Delete Battery
+
+---
+
+### 4. Distribution Service
+
+Port: **8084**
+
+Functions
+
+- Generate Final Energy Distribution
+- View Distribution Records
+- View Distribution Record by ID
+- Delete Distribution Record
+
+The Distribution Service communicates with
+
+- Solar Service
+- Wind Service
+- Battery Service
+
+using **RestTemplate**.
+
+---
+
+### 5. API Gateway
+
+Port: **8080**
+
+Acts as a single entry point for all microservices.
+
+---
+
+## REST APIs
+
+### Solar Service
+
+| Method | Endpoint |
+|---------|----------|
+| POST | /solar-panels |
+| GET | /solar-panels |
+| GET | /solar-panels/{id} |
+| DELETE | /solar-panels/{id} |
+
+---
+
+### Wind Service
+
+| Method | Endpoint |
+|---------|----------|
+| POST | /wind-turbines |
+| GET | /wind-turbines |
+| GET | /wind-turbines/{id} |
+| DELETE | /wind-turbines/{id} |
+
+---
+
+### Battery Service
+
+| Method | Endpoint |
+|---------|----------|
+| POST | /battery |
+| GET | /battery |
+| GET | /battery/{id} |
+| DELETE | /battery/{id} |
+
+---
+
+### Distribution Service
+
+| Method | Endpoint |
+|---------|----------|
+| POST | /distribution |
+| GET | /distribution |
+| GET | /distribution/{id} |
+| GET | /distribution/generate |
+| DELETE | /distribution/{id} |
+
+---
+
+## Database
+
+Each service uses its own **H2 In-Memory Database**.
+
+### H2 Console URLs
+
+Solar
+
+```
+http://localhost:8081/h2-console
+```
+
+Wind
+
+```
+http://localhost:8082/h2-console
+```
+
+Battery
+
+```
+http://localhost:8083/h2-console
+```
+
+Distribution
+
+```
+http://localhost:8084/h2-console
+```
+
+---
+
+## Application Ports
+
+| Service | Port |
+|----------|------|
+| API Gateway | 8080 |
+| Solar Service | 8081 |
+| Wind Service | 8082 |
+| Battery Service | 8083 |
+| Distribution Service | 8084 |
+
+---
+
+## Project Workflow
+
+```
 Solar Service
+       │
+       ▼
 Wind Service
+       │
+       ▼
 Battery Service
-using RestTemplate to retrieve renewable energy data and calculate the final power distribution.
+       │
+       ▼
+Distribution Service
+       │
+       ▼
+Final Energy Distribution
+```
 
-✅ Features
-Microservices Architecture
-RESTful APIs
-CRUD Operations
-Layered Architecture
-DTO Pattern
-Spring Data JPA
-H2 Database
-REST API Communication
-API Gateway Routing
-Exception Handling
-📮 API Testing
-All APIs were tested using Postman.
+---
 
-Sample Request
-POST http://localhost:8084/distribution/balance?requiredPower=700
-Sample Response
+## Sample Final Output
+
+```json
 {
-  "id": 1,
-  "requiredPower": 700,
-  "solarPowerUsed": 400,
-  "windPowerUsed": 200,
-  "batteryPowerUsed": 100,
-  "message": "Power Distributed Successfully"
+    "id": 1,
+    "totalSolarGeneration": 420.0,
+    "totalWindGeneration": 850.0,
+    "totalGeneration": 1270.0,
+    "batteryPercentage": 80.0,
+    "energyDistributed": 1270.0,
+    "status": "ENERGY DISTRIBUTED"
 }
-▶️ Running the Project
-Step 1
-Clone the repository.
+```
 
-git clone https://github.com/your-username/Renewable-Energy-Management-System.git
-Step 2
-Open each microservice in IntelliJ IDEA.
+---
 
-Step 3
+## How to Run
+
+### Step 1
+
+Clone the repository
+
+```bash
+git clone https://github.com/your-username/renewable-energy-system.git
+```
+
+### Step 2
+
+Open all projects in IntelliJ IDEA.
+
+### Step 3
+
 Run the services in the following order:
 
-Solar Service (8081)
-Wind Service (8082)
-Battery Service (8083)
-Distribution Service (8084)
-API Gateway (8080)
-Step 4
-Access the H2 Console or test the APIs using Postman.
+1. Solar Service
+2. Wind Service
+3. Battery Service
+4. Distribution Service
+5. API Gateway
 
-📈 Future Enhancements
-Eureka Service Discovery
-Spring Security with JWT Authentication
-Docker Containerization
-Kubernetes Deployment
-Prometheus Monitoring
-Grafana Dashboard
-CI/CD using GitHub Actions
-👨‍💻 Author
-REF : 212225040038
+### Step 4
 
-Avinash Karthick B M
+Test APIs using Postman or Chrome.
 
-B.Tech – CSE
+---
+
+## Future Enhancements
+
+- Service Discovery using Eureka
+- Spring Cloud Gateway
+- MySQL Database
+- Docker Support
+- JWT Authentication
+- Monitoring with Spring Boot Actuator
+- Kubernetes Deployment
+
+---
+
+## Author
+212225040038
+
+**Avinash Karthick B M**
+
+BE Computer Science Engineering
 
 Saveetha Engineering College
+
+---
+
+## License
+
+This project is developed for educational and internship purposes.
