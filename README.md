@@ -287,9 +287,10 @@ Test APIs using Postman or Chrome.
 ---
 
 ## Author
-212225040038
 
-**Avinash Karthick B M**
+Reg: 212225040038
+
+Name: Avinash Karthick B M
 
 BE Computer Science Engineering
 
